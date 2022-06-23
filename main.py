@@ -10,9 +10,6 @@ def criarAluno(nome, idade, epoca):
     arquivo.close()
 
 
-
-
-
 if __name__ == '__main__':
     opcao = int(input('Oque deseja fazer?\n01 - Cadastrar Aluno\n02 - Mostrar Alunos cadastrado\n03 - Atualizar Registro'
                       '04 - Excluir registro\nEscolha de acordo com o numero sem o zero: '))
