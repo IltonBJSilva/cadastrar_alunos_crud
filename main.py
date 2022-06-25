@@ -46,8 +46,10 @@ if __name__ == '__main__':
             break
         if opcao == 1: #Criar Arquivo
             qt_aluno = int(input('Insira a quantidade de alunos que vão ser cadastrada:'))
-            contador = 0
-            while contador < qt_aluno:
+            contador = -1
+            cont = 0
+            while cont < qt_aluno:
+                cont+=1
                 contador+=1
                 #Dicionario com as informações de alunos
                 dic_alunos = ({'alunoid': [], 'aluno': [], 'idade': [], 'turma': []})
@@ -86,14 +88,24 @@ if __name__ == '__main__':
         if opcao == 3: #Atualizar informação
             if os.path.isfile(arquivo):
                 indice = int(input('Qual deseja alterar:'.format(lista_aluno)))
+                #Excluir o registro
+                lista_aluno.pop(indice)
+                #criar um novo dicionario
                 dic_alunos = ({'alunoid': [], 'aluno': [], 'idade': [], 'turma': []})
+                #Inserir os novos valores
                 aluno = str(input('Insira o nome dos alunos: '))
                 idade = str(input('Insira a idade do aluno: '))
                 epoca_escolar = str(input('Insira o ano escolar do aluno: '))
-                dic_alunos['alunoid'] = contador
+
+                dic_alunos['alunoid'] = indice
                 dic_alunos['aluno'] = aluno
                 dic_alunos['idade'] = idade
                 dic_alunos['turma'] = epoca_escolar
+                criarAluno(contador,aluno, idade, epoca_escolar)
+
+                #Adicionar a lista
+                lista_aluno.insert(indice,dic_alunos)
+                print(lista_aluno)
 
 
         if opcao == 4: #Excluir informação
