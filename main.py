@@ -9,7 +9,6 @@ def criarAluno(alunoid,nome, idade, epoca):
     arquivo = open(diretorio,'a')
     arquivo.writelines('Aluno ID:'+str(alunoid)+' Nome: '+nome+' Idade: '+idade+' Turma Escolar: '+epoca+'\n')
     arquivo.close()
-
 def mostar_alunos(nome_arquivo):
     arquivo = open(nome_arquivo,'r')
     texto = arquivo.read()
@@ -17,7 +16,6 @@ def mostar_alunos(nome_arquivo):
     arquivo.seek(0) #Voltar ao inicio do arquivo
     sleep(4)
     arquivo.close()
-
 def atualizar_alunos(posicao):
 
 
@@ -28,14 +26,10 @@ def atualizar_alunos(posicao):
 
 
 
-
 if __name__ == '__main__':
     arquivo = 'F:/Projetos Python/cadastrar_alunos_crud/Alunos.txt'
     listarquivo = 'F:/Projetos Python/cadastrar_alunos_crud/lista_alunos.txt'
-
     lista_aluno = []
-
-
 
     while True:
         opcao = int(input('Oque deseja fazer?\n00 - Fechar \n01 - Cadastrar Aluno\n02 - Mostrar Alunos cadastrado\n03 - Atualizar Registro'
@@ -52,19 +46,19 @@ if __name__ == '__main__':
                 cont+=1
                 contador+=1
                 #Dicionario com as informações de alunos
-                dic_alunos = ({'alunoid': [], 'aluno': [], 'idade': [], 'turma': []})
-                aluno = str(input('Insira o nome dos alunos: '))
+                dic_alunos = ({'id: ': [], 'aluno: ': [], 'idade: ': [], 'turma: ': []})
+                aluno = str(input('Insira o nome dos alunos: ')).strip().lower().capitalize()
                 idade = str(input('Insira a idade do aluno: '))
-                epoca_escolar = str(input('Insira o ano escolar do aluno: '))
+                epoca_escolar = str(input('Insira o ano escolar do aluno: ')).upper()
                 #Inserindo no dicionario
-                dic_alunos['alunoid'] = contador
-                dic_alunos['aluno'] = aluno
-                dic_alunos['idade'] = idade
-                dic_alunos['turma'] = epoca_escolar
+                dic_alunos['id: '] = contador
+                dic_alunos['aluno: '] = aluno
+                dic_alunos['idade: '] = idade
+                dic_alunos['turma: '] = epoca_escolar
                 #Chamandoa função para criar o registro
                 criarAluno(contador,aluno, idade, epoca_escolar)
                 #Adicionando o dicionario em uma lista de alunos
-                lista_aluno.append(dic_alunos)
+                lista_aluno.append((contador,aluno,idade,epoca_escolar))
                 print('Adicionando, um segundo...')
 
                 #Salvar as informações da lista
@@ -72,15 +66,14 @@ if __name__ == '__main__':
                 lista_file = open(diretorio, 'w')
                 lista_file.write(str(lista_aluno))
                 lista_file.close()
-
                 sleep(1)
-            print('Tudo adicionado com sucesso')
-            print(lista_aluno)
+            print('Tudo adicionado com sucesso.')
         if opcao == 2: #Mostrar Arquivo
             if os.path.isfile(arquivo):
                 #print(f'O caminho {arquivo} existe, estamos abrindo so um segundo...')
                 sleep(1)
                 print(lista_aluno)
+
                 #print('Salvo... \n',mostar_alunos('Alunos.txt'))
 
             else:
@@ -93,18 +86,20 @@ if __name__ == '__main__':
                 #criar um novo dicionario
                 dic_alunos = ({'alunoid': [], 'aluno': [], 'idade': [], 'turma': []})
                 #Inserir os novos valores
-                aluno = str(input('Insira o nome dos alunos: '))
+                aluno = str(input('Insira o nome dos alunos: ')).strip().lower().capitalize()
                 idade = str(input('Insira a idade do aluno: '))
-                epoca_escolar = str(input('Insira o ano escolar do aluno: '))
+                epoca_escolar = str(input('Insira o ano escolar do aluno: ')).upper()
 
                 dic_alunos['alunoid'] = indice
                 dic_alunos['aluno'] = aluno
                 dic_alunos['idade'] = idade
                 dic_alunos['turma'] = epoca_escolar
-                criarAluno(contador,aluno, idade, epoca_escolar)
+                criarAluno(indice,aluno, idade, epoca_escolar)
 
                 #Adicionar a lista
                 lista_aluno.insert(indice,dic_alunos)
+
+
                 print(lista_aluno)
 
 
